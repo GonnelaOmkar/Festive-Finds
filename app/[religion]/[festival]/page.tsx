@@ -4,6 +4,27 @@ import { notFound } from "next/navigation"
 import { ProductSection } from "@/components/product-section"
 import { getFestival } from "@/lib/festivals"
 
+// This function tells Next.js which pages to build
+export async function generateStaticParams() {
+  // In a real app, you would fetch this data from a database or a local file.
+  const festivals = [
+    { religion: 'hinduism', festival: 'diwali' },
+    { religion: 'hinduism', festival: 'holi' },
+    { religion: 'christianity', festival: 'christmas' },
+    { religion: 'islam', festival: 'eid' },
+    // ...add all other festival pages you want to pre-build
+  ];
+
+  return festivals.map((item) => ({
+    religion: item.religion,
+    festival: item.festival,
+  }));
+}
+
+// This setting ensures that if a user tries to go to a URL not listed above,
+// they get a 404 Not Found page. This is required for static export.
+export const dynamicParams = false;
+
 export default function FestivalDetails({
   params,
 }: {
@@ -16,6 +37,8 @@ export default function FestivalDetails({
     <>
       <Navbar />
       <main className="mx-auto max-w-4xl px-4 py-10">
+        {/* Add the Festive Finds site name here */}
+        <h2 className="mb-2 text-2xl font-bold text-primary">Festive Finds</h2>
         <p className="text-sm text-muted-foreground capitalize">{params.religion} • Festival</p>
         <h1 className="mt-1 font-serif text-balance text-4xl">{fest!.title}</h1>
         <p className="mt-2 text-muted-foreground">{fest!.subtitle}</p>
