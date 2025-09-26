@@ -1,8 +1,11 @@
+// Corrected code for: app/page.tsx
+
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { religions } from "@/lib/data"
 import { ReligionCard } from "@/components/religion-card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image" // 1. ADD THIS IMPORT
 
 export default function HomePage() {
   return (
@@ -27,10 +30,14 @@ export default function HomePage() {
             </div>
           </div>
           <div className="aspect-[4/3] overflow-hidden rounded-xl border">
-            <img
-              src="/festivals-collage-warm-editorial.jpg"
+            {/* 2. THIS IS THE CORRECTED IMAGE COMPONENT */}
+            <Image
+              src="/festivals-collage-warm-editorial.jpg" // Assumes this image is in your "public" folder
               alt="Collage of festival moments"
+              width={800}  // Add width
+              height={600} // Add height
               className="h-full w-full object-cover"
+              priority // For fast loading of hero images
             />
           </div>
         </section>

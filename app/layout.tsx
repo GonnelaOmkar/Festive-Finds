@@ -13,10 +13,9 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 })
 
-export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+export const metadata = {
+  title: "Festive Finds",
+  description: "Discover unique festive products and deals.",
 }
 
 export default function RootLayout({

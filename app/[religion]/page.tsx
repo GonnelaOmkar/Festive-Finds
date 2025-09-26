@@ -1,5 +1,6 @@
 import ReligionPageClient from './religion-page-client' // We will create this file next
-
+import Image from "next/image"
+// ... other imports
 // This server function stays here. It runs at build time.
 export async function generateStaticParams() {
   const religions = [

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 type Props = {
   href: string
@@ -17,11 +18,13 @@ export function FestivalCard({ href, title, subtitle, imageAlt, imageQuery }: Pr
       <div className="relative h-56 w-full rounded-xl border bg-card shadow-sm transition will-change-transform [transform-style:preserve-3d] duration-500 group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]">
         {/* Front */}
         <div className="absolute inset-0 grid place-items-center rounded-xl [backface-visibility:hidden]">
-          <img
-            src={`/.jpg?height=240&width=384&query=${encodeURIComponent(imageQuery)}`}
-            alt={imageAlt}
-            className="h-full w-full rounded-xl object-cover"
-          />
+          <Image
+  src={`https://source.unsplash.com/384x240/?${encodeURIComponent(imageQuery)}`} // Using a real image service
+  alt={imageAlt}
+  width={384}
+  height={240}
+  className="h-full w-full rounded-xl object-cover"
+/>
           <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-background/70 to-transparent" />
           <div className="absolute bottom-3 left-3 right-3">
             <h3 className="font-serif text-lg">{title}</h3>
