@@ -1,26 +1,24 @@
 // Corrected code for: app/[religion]/[festival]/page.tsx
 
-import { Navbar } from "@/components/navbar"
-import type { Religion } from "@/lib/data"
-import { notFound } from "next/navigation"
-import { ProductSection } from "@/components/product-section"
-import { getFestival } from "@/lib/festivals"
-import Image from "next/image" // 1. ADD THIS IMPORT
+import { Navbar } from "@/components/navbar";
+import { notFound } from "next/navigation";
+import { ProductSection } from "@/components/product-section";
+import { getFestival, getFestivals } from "@/lib/festivals";
+import Image from "next/image";
+import { religions, type Religion } from "@/lib/data"; // Import your data
 
-// This function tells Next.js which pages to build
+// This function now reads from your data files to build ALL festival pages
 export async function generateStaticParams() {
-  const festivals = [
-    { religion: 'hinduism', festival: 'diwali' },
-    { religion: 'hinduism', festival: 'holi' },
-    { religion: 'christianity', festival: 'christmas' },
-    { religion: 'islam', festival: 'eid' },
-    // ...add all other festival pages you want to pre-build
-  ];
+  const allFestivalPaths = religions.flatMap((r) => {
+    const religionKey = r.key as Religion;
+    const festivals = getFestivals(religionKey);
+    return festivals.map((f) => ({
+      religion: religionKey,
+      festival: f.slug,
+    }));
+  });
 
-  return festivals.map((item) => ({
-    religion: item.religion,
-    festival: item.festival,
-  }));
+  return allFestivalPaths;
 }
 
 export const dynamicParams = false;
@@ -43,7 +41,6 @@ export default function FestivalDetails({
         <p className="mt-2 text-muted-foreground">{fest!.subtitle}</p>
 
         <div className="mt-6 overflow-hidden rounded-xl border">
-          {/* 2. THIS IS THE REPLACEMENT FOR THE <img> TAG */}
           <Image
             src={`https://source.unsplash.com/1000x600/?${encodeURIComponent(fest!.imageQuery)}`}
             alt={`${fest!.title} hero`}

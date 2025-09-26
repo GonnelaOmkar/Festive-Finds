@@ -1,11 +1,11 @@
 export type Religion = "hindu" | "muslim" | "christian" | "sikh"
 
-export const religions: { key: Religion; name: string; emoji: string; blurb: string }[] = [
-  { key: "hindu", name: "Hindu", emoji: "🕉️", blurb: "Festivals of light, color, and devotion." },
-  { key: "muslim", name: "Muslim", emoji: "☪️", blurb: "Celebrations of faith and community." },
-  { key: "christian", name: "Christian", emoji: "✝️", blurb: "Moments of hope and togetherness." },
-  { key: "sikh", name: "Sikh / Baisakhi", emoji: "🪯", blurb: "Spirit of service and harvest." },
-]
+export const religions: { key: string; name: string; emoji: string; blurb: string }[] = [
+  { key: "hinduism", name: "Hindu", emoji: "🕉️", blurb: "Festivals of light, color, and devotion." },
+  { key: "islam", name: "Muslim", emoji: "☪️", blurb: "Celebrations of faith and community." },
+  { key: "christianity", name: "Christian", emoji: "✝️", blurb: "Moments of hope and togetherness." },
+  { key: "sikh", name: "Sikh", emoji: "🪯", blurb: "Spirit of service and harvest." },
+];
 
 export const festivals: Record<
   Religion,
