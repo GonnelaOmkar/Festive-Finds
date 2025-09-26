@@ -1,4 +1,7 @@
+// Corrected code for: components/product-section.tsx
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image" // 1. ADD THIS IMPORT
 
 export type Product = {
   id: string
@@ -29,9 +32,12 @@ export function ProductSection({ products }: { products: Product[] }) {
                 <CardTitle className="text-base">{p.title}</CardTitle>
               </CardHeader>
               <CardContent className="grid gap-3">
-                <img
-                  src={`/.jpg?height=240&width=384&query=${encodeURIComponent(p.imageQuery)}`}
+                {/* 2. THIS IS THE CORRECTED IMAGE COMPONENT */}
+                <Image
+                  src={`https://source.unsplash.com/384x240/?${encodeURIComponent(p.imageQuery)}`}
                   alt={p.imageAlt}
+                  width={384}
+                  height={240}
                   className="h-44 w-full rounded-lg object-cover"
                 />
                 <div className="flex items-center justify-between">
