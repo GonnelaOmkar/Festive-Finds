@@ -9,6 +9,24 @@ import { Input } from "@/components/ui/input"
 import { useParams } from "next/navigation"
 import { getFestivals, type FestivalMerged } from "@/lib/festivals"
 
+// This function tells Next.js which religion pages to build
+export async function generateStaticParams() {
+  // In a real app, you would get this data from the same source as before
+  const religions = [
+    { religion: 'hinduism' },
+    { religion: 'christianity' },
+    { religion: 'islam' },
+    // ...add all other unique religions here
+  ];
+
+  return religions.map((item) => ({
+    religion: item.religion,
+  }));
+}
+
+// This ensures only the paths listed above are generated
+export const dynamicParams = false;
+
 export default function FestivalsListPage() {
   const params = useParams<{ religion: string }>()
   const key = (params?.religion || "hindu") as Religion
@@ -28,6 +46,8 @@ export default function FestivalsListPage() {
     <>
       <Navbar />
       <main className="mx-auto max-w-6xl px-4">
+        {/* Festive Finds site name */}
+        <h2 className="mb-2 text-2xl font-bold text-primary">Festive Finds</h2>
         <div className="flex items-end justify-between gap-4 py-8">
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Festivals — {rel?.name}</p>
