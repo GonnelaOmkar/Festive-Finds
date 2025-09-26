@@ -10,8 +10,9 @@ export type ExtraFestival = {
   products: { id: string; title: string; price: string; href: string; imageQuery: string; imageAlt: string }[]
 }
 
-export const extraFestivals: Record<Religion, ExtraFestival[]> = {
-  hindu: [
+// Changed from Record<Religion, ExtraFestival[]> to Record<string, ExtraFestival[]>
+export const extraFestivals: Record<string, ExtraFestival[]> = {
+  hinduism: [
     {
       slug: "dussehra",
       title: "Dussehra",
@@ -169,7 +170,7 @@ export const extraFestivals: Record<Religion, ExtraFestival[]> = {
       ],
     },
   ],
-  muslim: [
+  islam: [
     {
       slug: "eid-al-adha",
       title: "Eid al-Adha",
@@ -327,7 +328,7 @@ export const extraFestivals: Record<Religion, ExtraFestival[]> = {
       ],
     },
   ],
-  christian: [
+  christianity: [
     {
       slug: "good-friday",
       title: "Good Friday",

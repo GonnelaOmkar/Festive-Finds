@@ -2,23 +2,23 @@ import { festivals as base, type Religion } from "@/lib/data"
 import { extraFestivals, type ExtraFestival } from "@/lib/festival-extras"
 
 export type FestivalMerged = (typeof base)[Religion][number] & Partial<Pick<ExtraFestival, "wikipediaUrl">>
+// Corrected part of: lib/festivals.ts
 
 const wikiUrlMapping: Partial<Record<Religion, Record<string, string>>> = {
-  hindu: {
+  hinduism: { // CHANGED
     diwali: "https://en.wikipedia.org/wiki/Diwali",
     holi: "https://en.wikipedia.org/wiki/Holi",
   },
-  muslim: {
-    // existing base had `eid` (Eid al-Fitr)
+  islam: { // CHANGED
     eid: "https://en.wikipedia.org/wiki/Eid_al-Fitr",
   },
-  christian: {
+  christianity: { // CHANGED
     christmas: "https://en.wikipedia.org/wiki/Christmas",
   },
   sikh: {
     baisakhi: "https://en.wikipedia.org/wiki/Vaisakhi",
   },
-}
+};
 
 function attachWikiUrl<R extends Religion>(religion: R, list: FestivalMerged[]): FestivalMerged[] {
   const map = wikiUrlMapping[religion] || {}

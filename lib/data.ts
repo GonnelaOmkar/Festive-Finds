@@ -1,4 +1,4 @@
-export type Religion = "hindu" | "muslim" | "christian" | "sikh"
+export type Religion = "hinduism" | "islam" | "christianity" | "sikh";
 
 export const religions: { key: string; name: string; emoji: string; blurb: string }[] = [
   { key: "hinduism", name: "Hindu", emoji: "🕉️", blurb: "Festivals of light, color, and devotion." },
@@ -8,7 +8,7 @@ export const religions: { key: string; name: string; emoji: string; blurb: strin
 ];
 
 export const festivals: Record<
-  Religion,
+  string,
   {
     slug: string
     title: string
@@ -18,7 +18,7 @@ export const festivals: Record<
     products: { id: string; title: string; price: string; href: string; imageQuery: string; imageAlt: string }[]
   }[]
 > = {
-  hindu: [
+  hinduism: [
     {
       slug: "diwali",
       title: "Diwali",
@@ -57,7 +57,7 @@ export const festivals: Record<
       title: "Holi",
       subtitle: "Festival of Colors",
       imageQuery: "holi colors celebration powder",
-      wiki: "Holi bursts with color and camaraderie, marking the arrival of spring. Friends and families paint the air—and each other—with vibrant gulal.",
+      wiki: "Holi bursts with color and camaraderie, marking the arrival of spring. Friends and families celebrate with vibrant colors.",
       products: [
         {
           id: "h1",
@@ -78,13 +78,13 @@ export const festivals: Record<
       ],
     },
   ],
-  muslim: [
+  islam: [
     {
       slug: "eid",
       title: "Eid al-Fitr",
       subtitle: "Festival of Breaking the Fast",
       imageQuery: "eid crescent lanterns cookies",
-      wiki: "Eid al-Fitr marks the end of Ramadan with prayer, charity, and festive meals shared among loved ones. Homes shine with lanterns and warm hospitality.",
+      wiki: "Eid al-Fitr marks the end of Ramadan with prayer, charity, and festive meals shared among loved ones.",
       products: [
         {
           id: "e1",
@@ -105,7 +105,7 @@ export const festivals: Record<
       ],
     },
   ],
-  christian: [
+  christianity: [
     {
       slug: "christmas",
       title: "Christmas",
@@ -138,7 +138,7 @@ export const festivals: Record<
       title: "Baisakhi",
       subtitle: "Harvest & Khalsa Day",
       imageQuery: "baisakhi harvest celebration sikh",
-      wiki: "Baisakhi honors the spring harvest and the founding of the Khalsa. Communities gather for kirtan, langar, and joyous processions.",
+      wiki: "Baisakhi honors the spring harvest and the founding of the Khalsa. Communities gather for music, food, and processions.",
       products: [
         {
           id: "s1",
