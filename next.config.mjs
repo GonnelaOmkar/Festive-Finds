@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
+    basePath: '/Festive-Finds',
+  assetPrefix: '/Festive-Finds',
 
   eslint: {
     ignoreDuringBuilds: true,
