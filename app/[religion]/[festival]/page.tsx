@@ -1,12 +1,14 @@
+// Corrected code for: app/[religion]/[festival]/page.tsx
+
 import { Navbar } from "@/components/navbar"
 import type { Religion } from "@/lib/data"
 import { notFound } from "next/navigation"
 import { ProductSection } from "@/components/product-section"
 import { getFestival } from "@/lib/festivals"
+import Image from "next/image" // 1. ADD THIS IMPORT
 
 // This function tells Next.js which pages to build
 export async function generateStaticParams() {
-  // In a real app, you would fetch this data from a database or a local file.
   const festivals = [
     { religion: 'hinduism', festival: 'diwali' },
     { religion: 'hinduism', festival: 'holi' },
@@ -21,8 +23,6 @@ export async function generateStaticParams() {
   }));
 }
 
-// This setting ensures that if a user tries to go to a URL not listed above,
-// they get a 404 Not Found page. This is required for static export.
 export const dynamicParams = false;
 
 export default function FestivalDetails({
@@ -37,17 +37,20 @@ export default function FestivalDetails({
     <>
       <Navbar />
       <main className="mx-auto max-w-4xl px-4 py-10">
-        {/* Add the Festive Finds site name here */}
         <h2 className="mb-2 text-2xl font-bold text-primary">Festive Finds</h2>
         <p className="text-sm text-muted-foreground capitalize">{params.religion} • Festival</p>
         <h1 className="mt-1 font-serif text-balance text-4xl">{fest!.title}</h1>
         <p className="mt-2 text-muted-foreground">{fest!.subtitle}</p>
 
         <div className="mt-6 overflow-hidden rounded-xl border">
-          <img
-            src={`/.jpg?height=600&width=1000&query=${encodeURIComponent(fest!.imageQuery)}`}
+          {/* 2. THIS IS THE REPLACEMENT FOR THE <img> TAG */}
+          <Image
+            src={`https://source.unsplash.com/1000x600/?${encodeURIComponent(fest!.imageQuery)}`}
             alt={`${fest!.title} hero`}
+            width={1000}
+            height={600}
             className="h-[320px] w-full object-cover md:h-[420px]"
+            priority
           />
         </div>
 
